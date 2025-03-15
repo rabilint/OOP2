@@ -18,18 +18,18 @@ double area(Point a, Point b, Point c) { //підрахунок площи
     return sqrt(p * (p - ab) * (p - bc) * (p - ca));
 }
 
-double crossProduct(Point A, Point B, Point P) {
-    return (B.x - A.x) * (P.y - A.y) - (B.y - A.y) * (P.x - A.x);
+double crossProduct(Point a, Point b, Point point) {
+    return (b.x - a.x) * (point.y - a.y) - (b.y - a.y) * (point.x - a.x);
 }
 
 void checkPointInTriangle(Point a, Point b, Point c, Point point) { //перевірка іншим метод(векторним)
     double cross1 = crossProduct(a, b, point);
     double cross2 = crossProduct(b, c, point);
     double cross3 = crossProduct(c, a, point);
-    double total_area = area(a, b, c);
+    double totalArea = area(a, b, c);
     bool allPositive = (cross1 > 0 && cross2 > 0 && cross3 > 0);
     bool allNegative = (cross1 < 0 && cross2 < 0 && cross3 < 0);
-    if (total_area < 1e-6) {std::cout << "Трикутник не вироджений!\n";}
+    if (totalArea < 1e-6) {std::cout << "Трикутник не вироджений!\n";}
     else if (allPositive || allNegative)
         std::cout << "Точка належить трикутнику.";
 
@@ -38,13 +38,13 @@ void checkPointInTriangle(Point a, Point b, Point c, Point point) { //перев
     else std::cout << "Точка поза трикутником.";
 };
 
-double LOB(Point a, Point b, Point point) {//випадків, коли точка лежить на межі трикутника.
+double laysOnBorder(Point a, Point b, Point point) {//випадків, коли точка лежить на межі трикутника.
     if ((b.x - a.x) * (point.y - a.y) - (b.y - a.y) * (point.x - a.x) == 0) {return true;} else {return false;}
 }
 
 double contain(Point a, Point b, Point c, Point point) { //чи належить точка до трикутника
     double total_area = area(a, b, c);
-    if (LOB(a,b,point) || LOB(b,c,point) || LOB(c,a,point)) {std::cout << "Точка лежить на границі трикутника\n"; return 0; }
+    if (laysOnBorder(a,b,point) || laysOnBorder(b,c,point) || laysOnBorder(c,a,point)) {std::cout << "Точка лежить на границі трикутника\n"; return 0; }
     else {
         if (total_area < 1e-6) {std::cout << "Трикутник не вироджений!\n";  return false;}
         double tmp = (area(point, b, c) + area(a, point, c) + area(a, b, point)) / total_area;

@@ -12,7 +12,7 @@ struct Point {
 };
 
 double crossProduct(Point A, Point B, Point P);
-double LOB(Point a, Point b, Point point);
+double laysOnBorder(Point a, Point b, Point point);
 double len(Point a, Point b);
 double area(Point a, Point b, Point c);
 double contain(Point a, Point b, Point c, Point point);
