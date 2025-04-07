@@ -3,6 +3,17 @@
 #include <vector>
 
 int main() {
+
+    Triangle t = {{0,0}, {5,0}, {2,5}};
+    Point p = {0,0};
+    if (t.contains(p)) {
+        std::cout << "точка належить трикутнику"<< std::endl;
+    } else {
+        std::cout << "Точка не належить трикутнику" << std::endl;
+    }
+
+
+
     std::vector<Point> v1;
     Point a, b, c;
     bool end = false;
